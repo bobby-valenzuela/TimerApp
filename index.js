@@ -1,5 +1,3 @@
-console.log("Running...")
-
 import Timer from './timer.js'
 
 
@@ -7,22 +5,20 @@ const durationInput = document.querySelector('#duration');
 const startButton = document.querySelector('#start');
 const pauseButton = document.querySelector('#pause');
 const circle = document.querySelector('circle');
-const perimeter = circle.getAttribute('r') * 2 * Math.PI;
-circle.setAttribute('stroke-dasharray',perimeter);
-let currentOffset = 0;
+const perimeterPx = circle.getAttribute('r') * 2 * Math.PI;
+circle.setAttribute('stroke-dasharray',perimeterPx); // Initialize our svg stroke
+
+let duration;
 
 
 const timer = new Timer(durationInput, startButton, pauseButton, {
-    onStart(){
-        console.log('Timer started');
+    onStart(totalDuration){
+        duration = totalDuration;
     },
-    onTick(){
-        console.log('Timer ticked');
-        circle.setAttribute('stroke-dashoffset',currentOffset);
-        currentOffset -= 10;
+    onTick(secsRemaining){
+        circle.setAttribute('stroke-dashoffset', perimeterPx * secsRemaining / duration - perimeterPx );
     },
     onComplete(){
-        console.log('Timer completed');
 
     }
 } );

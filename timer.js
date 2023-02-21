@@ -22,46 +22,41 @@ class Timer{
         However, it seems to be more modern convention to just leave it unbound and declare with an arrow function pause = ()=>{...} - since 'this' would point to whatever called the pause function - which would just be the class instance. More specifically, the 'this' keyword inside a method declared with arrow syntax just points to the execution context of it's parent (the class instance in this case).
         */
        
-       
+       this.secondsPerTick = 0.05;
     }
-    
+
     // Instance methods
     start = () => {
-        this.onStart && this.onStart();
+        this.onStart && this.onStart(this.secsRemaining);
         this.tick();
-        this.interval = setInterval(this.tick,1000)
+        this.interval = setInterval(this.tick, this.secondsPerTick * 1000 );
     }
     
     pause = () => {
         clearInterval(this.interval);
     }
-    
-    reset = () => {
-        this.pause()
-        this.timeRemaining = 0;
-    }
 
     // Use the getter to get what to set the in the setter :)
     tick = () => {
 
-        this.onTick && this.onTick()
+        this.onTick && this.onTick(this.secsRemaining)
         
-        if( this.timeRemaining - 1 <= 0 ) { 
-            this.reset();
+        if( this.secsRemaining <= 0 ) { 
+            this.pause();
             this.onComplete && this.onComplete() 
         }
         else{
-            this.timeRemaining = this.timeRemaining - 1;
+            this.secsRemaining = this.secsRemaining - this.secondsPerTick;
         }
     }
     
     // Getters and Setters
-    get timeRemaining(){
+    get secsRemaining(){
         return parseFloat(this.durationInput.value);
     }
 
-    set timeRemaining(time){
-        this.durationInput.value = time;
+    set secsRemaining(time){
+        this.durationInput.value = time.toFixed(2);
     }
 
 }
