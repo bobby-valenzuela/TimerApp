@@ -5,10 +5,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="index.js" defer></script>
+    <script src="timer.js" type="module" defer></script>
+    <script src="index.js" type="module" defer></script>
 </head>
 <body>
-
+    <svg height="200" width="200">
+        <circle 
+            r="90" 
+            cx="100" 
+            cy="100"
+            fill="transparent"
+            stroke="blue"
+            stroke-width="10"
+            transform="rotate(-90 100 100)"
+            />
+            <!-- to be set dynamically
+                 stroke-dasharray="565"
+                stroke-dashoffset="-100" 
+            -->
+    </svg>
     <input id="duration" value="30" />
     <button id="start">Start</button>
     <button id="pause">Pause</button>
