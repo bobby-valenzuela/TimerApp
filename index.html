@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="timer.js" type="module" defer></script>
+    <script src="index.js" type="module" defer></script>
+
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
+    />
+</head>
+<body>
+
+    <div class="timer">
+        <div class="controls">
+            <input id="duration" value="3" />
+            <div>
+                <button id="start"><i class="fas fa-play"></i></button>
+                <button id="pause"><i class="fas fa-pause"></i></button>
+            </div>
+        </div>
+        <svg class="dial" height="200" width="200">
+            <circle 
+                r="190" 
+                cx="0" 
+                cy="200"
+                fill="transparent"
+                stroke="green"
+                stroke-width="10"
+                transform="rotate(-90 100 100)"
+                />
+                <!-- to be set dynamically
+                     stroke-dasharray="565"
+                    stroke-dashoffset="-100" 
+                -->
+        </svg>
+
+    </div>
+
+</body>
+</html>
